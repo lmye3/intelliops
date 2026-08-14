@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>灵瞳智维 IntelliOps — Windows 独立运维 Agent 系统</title>
+<style>
+:root{--bg:#1B1F3B;--panel:#232952;--line:#3a4477;--text:#E9EEFB;--muted:#9AA1B8;--accent:#FF6B35;--cyan:#21D4FD;--green:#3DDC97}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:"Microsoft YaHei","PingFang SC",sans-serif;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+header{padding:72px 0 48px;text-align:center}
+.logo{width:88px;height:88px;border-radius:20px;margin-bottom:20px}
+h1{font-size:44px;font-weight:900;letter-spacing:.02em}
+.sub{font-size:20px;color:var(--accent);font-weight:700;margin-top:10px}
+.desc{color:var(--muted);margin-top:14px;font-size:16px;max-width:640px;margin-left:auto;margin-right:auto}
+.badges{margin-top:24px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.badge{background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:6px 18px;font-size:14px}
+.badge a{color:var(--cyan);text-decoration:none}
+section{padding:44px 0;border-top:1px solid var(--line)}
+h2{font-size:28px;margin-bottom:24px}
+h2 span{color:var(--accent)}
+.flow{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin:20px 0}
+.fstep{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:14px}
+.fstep b{color:var(--cyan)}
+.farrow{color:var(--accent)}
+.agents{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.agent{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px;border-top:4px solid var(--accent)}
+.agent h3{font-size:18px}
+.agent h3 span{color:var(--muted);font-size:13px;font-weight:400}
+.agent ul{margin-top:10px;padding-left:18px;font-size:14px;color:var(--muted)}
+.agent .bound{margin-top:10px;font-size:13px;color:var(--accent)}
+.skills{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.skill{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px;font-size:13px}
+.skill b{color:var(--cyan);font-family:Consolas,monospace;font-size:13px}
+.skill span{color:var(--muted)}
+.safety{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;text-align:center}
+.safety .lv{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 8px}
+.safety .lv b{font-size:24px;color:var(--accent)}
+.safety .lv p{font-size:12px;color:var(--muted);margin-top:6px}
+.shot{max-width:100%;border-radius:14px;border:1px solid var(--line);margin-top:16px}
+.links{display:flex;gap:16px;flex-wrap:wrap}
+.links a{color:var(--cyan);text-decoration:none;border:1px solid var(--line);border-radius:8px;padding:10px 18px;background:var(--panel)}
+.links a:hover{border-color:var(--accent)}
+footer{padding:40px 0 60px;text-align:center;color:var(--muted);font-size:14px}
+footer a{color:var(--cyan)}
+@media(max-width:720px){.agents,.skills{grid-template-columns:1fr}.safety{grid-template-columns:repeat(2,1fr)}h1{font-size:32px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <img class="logo" src="assets/icon.png" alt="IntelliOps icon" onerror="this.style.display='none'">
+    <h1>灵瞳智维 IntelliOps</h1>
+    <div class="sub">Windows 独立运维 Agent 系统</div>
+    <p class="desc">4 个职责隔离的 Agent、14 个带 Schema 的 Skill、白名单 Runbook 沙箱、本地数字孪生实验室——一条从真实探测到恢复验证的可信处理链。</p>
+    <div class="badges">
+      <span class="badge"><a href="https://github.com/lmye3/intelliops/blob/main/LICENSE">Apache 2.0</a></span>
+      <span class="badge">零第三方依赖</span>
+      <span class="badge"><a href="https://github.com/lmye3/intelliops/blob/main/docs/API.md">API 契约</a></span>
+      <span class="badge"><a href="https://github.com/lmye3/intelliops/blob/main/docs/SKILL_CONTRACT.md">Skill 契约</a></span>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>处理<span>闭环</span></h2>
+    <div class="flow">
+      <div class="fstep"><b>真实探测</b><br>6类监控目标</div><span class="farrow">→</span>
+      <div class="fstep"><b>事件生成</b><br>连续失败去抖</div><span class="farrow">→</span>
+      <div class="fstep"><b>Commander</b><br>分诊派发</div><span class="farrow">→</span>
+      <div class="fstep"><b>Detective</b><br>取证诊断</div><span class="farrow">→</span>
+      <div class="fstep"><b>Ranger</b><br>风险决策</div><span class="farrow">→</span>
+      <div class="fstep" style="border-color:var(--accent)"><b>人工审批</b><br>仅L3</div><span class="farrow">→</span>
+      <div class="fstep"><b>沙箱恢复</b><br>白名单Runbook</div><span class="farrow">→</span>
+      <div class="fstep"><b>指标复验</b><br>原路径探测</div><span class="farrow">→</span>
+      <div class="fstep"><b>Sage复盘</b><br>经验沉淀</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>四个 <span>Agent</span></h2>
+    <div class="agents">
+      <div class="agent"><h3>Commander <span>指挥官</span></h3><ul><li>聚合告警、判定严重度、建任务计划</li></ul><div class="bound">边界：不诊断、不执行</div></div>
+      <div class="agent"><h3>Detective <span>诊断侦探</span></h3><ul><li>调 Skill 取证据，输出候选根因+置信度+证据引用</li></ul><div class="bound">边界：无执行权（L0）</div></div>
+      <div class="agent"><h3>Ranger <span>安全执行官</span></h3><ul><li>匹配 Runbook、查风险、发起审批、触发沙箱执行</li></ul><div class="bound">边界：L3 必须人批</div></div>
+      <div class="agent"><h3>Sage <span>复盘智者</span></h3><ul><li>汇总全程、检查证据、写复盘和经验</li></ul><div class="bound">边界：不改审计记录</div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>十四个 <span>Skill</span></h2>
+    <div class="skills">
+      <div class="skill"><b>system_metrics_collector</b><br><span>本机真实指标采集，区分真实/示例数据</span></div>
+      <div class="skill"><b>evidence_analyzer</b><br><span>证据分析，LLM失败显式标记fallback</span></div>
+      <div class="skill"><b>runbook_matcher</b><br><span>白名单Runbook匹配，无匹配返回no_match</span></div>
+      <div class="skill"><b>alert-aggregator</b><br><span>按服务/错误码/时间窗口聚合告警</span></div>
+      <div class="skill"><b>log-hunter</b><br><span>支付沙箱实际请求日志查询</span></div>
+      <div class="skill"><b>metric-analyzer</b><br><span>真实压测批次指标分析</span></div>
+      <div class="skill"><b>change-scanner</b><br><span>沙箱配置变更扫描与关联性计算</span></div>
+      <div class="skill"><b>recovery-verifier</b><br><span>真实并发请求验证恢复效果</span></div>
+      <div class="skill"><b>rollback-executor</b><br><span>回滚证据配置与记录</span></div>
+      <div class="skill"><b>monitor-evidence-collector</b><br><span>监控探测证据固化</span></div>
+      <div class="skill"><b>monitor-recovery-verifier</b><br><span>原探测路径恢复复验</span></div>
+      <div class="skill"><b>twin-evidence-collector</b><br><span>数字孪生故障指标固化</span></div>
+      <div class="skill"><b>twin-recovery-verifier</b><br><span>孪生HTTP路径恢复验证</span></div>
+      <div class="skill"><b>runbook-matcher</b><br><span>结构化证据两阶段方案选择</span></div>
+    </div>
+    <p style="color:var(--muted);font-size:13px;margin-top:14px">每个 Skill 是独立目录：<code style="color:var(--cyan)">manifest.json + input.schema.json + output.schema.json + index.js + SKILL.md</code>，输入经 JSON Schema draft 2020-12 严格校验。</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>安全<span>分级</span></h2>
+    <div class="safety">
+      <div class="lv"><b>L0</b><p>只读<br>自动执行</p></div>
+      <div class="lv"><b>L1</b><p>可逆<br>自动+留痕</p></div>
+      <div class="lv"><b>L2</b><p>高置信度<br>+白名单</p></div>
+      <div class="lv"><b>L3</b><p>必须<br>人工审批</p></div>
+      <div class="lv"><b>L4</b><p>只给建议<br>禁止执行</p></div>
+    </div>
+    <p style="color:var(--muted);font-size:13px;margin-top:16px">当前版本只启用 <code style="color:var(--accent)">simulation</code> 与 <code style="color:var(--accent)">sandbox</code> 模式。LLM 输出永远不会被当作命令执行。</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>真实 <span>Trace</span></h2>
+    <img class="shot" src="assets/trace.png" alt="Trace 中文验收截图">
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>文档与<span>链接</span></h2>
+    <div class="links">
+      <a href="https://github.com/lmye3/intelliops/blob/main/docs/API.md">接口契约</a>
+      <a href="https://github.com/lmye3/intelliops/blob/main/docs/SKILL_CONTRACT.md">Skill 开发规范</a>
+      <a href="https://github.com/lmye3/intelliops/blob/main/docs/RUNBOOK_SPEC.md">Runbook 规格</a>
+      <a href="https://github.com/lmye3/intelliops/blob/main/examples/添加一个Skill.md">示例：加一个Skill</a>
+      <a href="https://github.com/lmye3/intelliops/blob/main/THIRD_PARTY_NOTICES.md">第三方依赖声明</a>
+      <a href="https://github.com/lmye3/intelliops/blob/main/CONTRIBUTING.md">贡献指南</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>灵瞳智维 IntelliOps · Apache 2.0 · <a href="https://github.com/lmye3/intelliops">github.com/lmye3/intelliops</a></p>
+  </div>
+</footer>
+</body>
+</html>

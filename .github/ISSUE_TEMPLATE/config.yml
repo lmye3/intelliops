@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 项目文档
+    url: https://github.com/lmye3/intelliops#readme
+    about: 先阅读 README 与 docs 目录，很多问题已有答案
+  - name: Skill 契约
+    url: https://github.com/lmye3/intelliops/blob/main/docs/SKILL_CONTRACT.md
+    about: 提交新 Skill 前必读
