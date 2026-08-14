@@ -1,0 +1,13 @@
+{
+  "id": "RB-DB-POOL-002",
+  "version": "2.0.0",
+  "risk_level": "L3",
+  "allowed_parameters": {
+    "target_pool": { "type": "integer", "minimum": 8, "maximum": 128 }
+  },
+  "timeout_seconds": 30,
+  "preconditions": ["execution_mode=sandbox", "target_service=payment-api", "approval_status=APPROVED"],
+  "execution_steps": ["set sandbox connection-pool capacity to approved target"],
+  "verification_steps": ["run 36 real in-process concurrent requests", "error_rate<=5", "p95_latency_ms<=100"],
+  "rollback_steps": ["restore pre-execution pool capacity", "repeat verification"]
+}

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["root_cause", "available_runbooks"],
+  "properties": {
+    "root_cause": { "type": "string", "minLength": 1 },
+    "risk_level": { "enum": ["L0", "L1", "L2", "L3", "L4"] },
+    "environment": { "type": "string" },
+    "available_runbooks": { "type": "array" },
+    "parameters": { "type": "object" }
+  }
+}

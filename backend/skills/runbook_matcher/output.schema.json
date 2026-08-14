@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["status", "match_score", "match_basis", "parameters", "risk_level", "rollback_conditions"],
+  "properties": {
+    "status": { "enum": ["matched", "no_match"] },
+    "matched_runbook": { "type": ["object", "null"] },
+    "match_score": { "type": "number", "minimum": 0, "maximum": 1 },
+    "match_basis": { "type": "array" },
+    "parameters": { "type": "object" },
+    "risk_level": { "enum": ["L0", "L1", "L2", "L3", "L4"] },
+    "rollback_conditions": { "type": "array" }
+  }
+}

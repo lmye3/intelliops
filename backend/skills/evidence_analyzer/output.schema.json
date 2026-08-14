@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["analysis_mode", "llm_status", "candidates", "confidence", "evidence_refs", "counter_evidence", "missing_evidence", "can_proceed_to_repair"],
+  "properties": {
+    "analysis_mode": { "enum": ["llm", "deterministic_fallback"] },
+    "llm_status": { "enum": ["llm_success", "fallback_template", "llm_failed"] },
+    "candidates": { "type": "array", "minItems": 1 },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "evidence_refs": { "type": "array" },
+    "counter_evidence": { "type": "array" },
+    "missing_evidence": { "type": "array" },
+    "can_proceed_to_repair": { "type": "boolean" }
+  }
+}

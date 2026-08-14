@@ -1,0 +1,25 @@
+# 运行时与构建产物
+node_modules/
+*.exe
+*.dll
+*.pyd
+*.so
+*.zip
+*.db
+*.sqlite3
+
+# 数据与日志
+intelliops-data.json
+logs/
+*.log
+
+# 系统与编辑器
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# 环境密钥
+.env
+.env.local

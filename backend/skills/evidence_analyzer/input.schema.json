@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["alert", "metrics", "logs"],
+  "properties": {
+    "alert": { "type": "object" },
+    "metrics": { "type": "array" },
+    "logs": { "type": "array" },
+    "evidence_refs": { "type": "array" },
+    "counter_evidence": { "type": "array" }
+  }
+}

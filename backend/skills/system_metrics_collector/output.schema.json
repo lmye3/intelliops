@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["collection_mode", "data_source", "collected_at", "samples", "errors"],
+  "properties": {
+    "collection_mode": { "const": "real" },
+    "data_source": { "type": "string" },
+    "collected_at": { "type": "string" },
+    "samples": { "type": "array" },
+    "errors": { "type": "array" }
+  }
+}

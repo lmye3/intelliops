@@ -1,0 +1,1 @@
+{"name":"runbook_matcher","version":"1.1.0","owner":"Ranger","risk_level":"L0","input_schema":"input.schema.json","output_schema":"output.schema.json","entrypoint":"index.js","failure_mode":"no_match","changelog":["1.1.0: UTF-8修复、明确no_match与Schema验证","1.0.0: 首版"]}
