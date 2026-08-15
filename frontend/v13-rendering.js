@@ -318,13 +318,13 @@
           ? '<div class="notice error"><b>检测到加密Key，但当前Windows用户无法解密</b><br>请重新输入Key进行替换。</div>'
           : '<div class="notice"><b>尚未保存API Key</b><br>请输入兼容接口的Key。</div>';
       const html = '<div style="position:fixed;inset:0;background:#000a;display:flex;align-items:center;justify-content:center;z-index:999" onclick="if(event.target===this)this.remove()">' +
-        '<div style="background:#0d192b;border:1px solid #22334c;border-radius:12px;padding:24px;max-width:520px;width:92%">' +
+        '<div style="background:#33136b;border:1px solid #5a2fa5;border-radius:12px;padding:24px;max-width:520px;width:92%">' +
         '<h3 style="margin:0 0 16px;color:#21d4fd">AI 安全配置（v15.0）</h3>' + statusHtml +
         '<div style="display:grid;gap:10px;margin-top:14px">' +
-        '<label style="color:#8ea1be;font-size:12px">Endpoint<input id="aiEndpoint" value="' + esc(config.endpoint || 'https://api.deepseek.com/v1/chat/completions') + '" style="width:100%;background:#081526;border:1px solid #314968;color:#fff;padding:9px;border-radius:7px"></label>' +
-        '<label style="color:#8ea1be;font-size:12px">新API Key（仅首次设置或更换时填写）<input id="aiKey" type="password" autocomplete="new-password" placeholder="' + (saved ? '•••••••• 已保存；留空保持不变' : '请输入API Key') + '" style="width:100%;background:#081526;border:1px solid #314968;color:#fff;padding:9px;border-radius:7px"></label>' +
+        '<label style="color:#8ea1be;font-size:12px">Endpoint<input id="aiEndpoint" value="' + esc(config.endpoint || 'https://api.deepseek.com/v1/chat/completions') + '" style="width:100%;background:#260f52;border:1px solid #5d37b8;color:#fff;padding:9px;border-radius:7px"></label>' +
+        '<label style="color:#8ea1be;font-size:12px">新API Key（仅首次设置或更换时填写）<input id="aiKey" type="password" autocomplete="new-password" placeholder="' + (saved ? '•••••••• 已保存；留空保持不变' : '请输入API Key') + '" style="width:100%;background:#260f52;border:1px solid #5d37b8;color:#fff;padding:9px;border-radius:7px"></label>' +
         '<div id="aiKeyHint" class="sub">' + (saved ? '当前Key：••••••••（Windows DPAPI加密存储）' : 'Key不会写入程序目录或普通配置文件') + '</div>' +
-        '<label style="color:#8ea1be;font-size:12px">Model<input id="aiModel" value="' + esc(config.model || '') + '" style="width:100%;background:#081526;border:1px solid #314968;color:#fff;padding:9px;border-radius:7px"></label></div>' +
+        '<label style="color:#8ea1be;font-size:12px">Model<input id="aiModel" value="' + esc(config.model || '') + '" style="width:100%;background:#260f52;border:1px solid #5d37b8;color:#fff;padding:9px;border-radius:7px"></label></div>' +
         '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px"><button class="primary" onclick="saveAI()">保存设置</button><button onclick="testAI()">测试连接</button>' +
         '<button id="clearAiKeyButton" class="danger" style="' + (config.key_persisted ? '' : 'display:none') + '" onclick="clearAIKey()">删除已保存Key</button>' +
         '<button onclick="document.getElementById(\'aiPanel\').remove()">关闭</button></div>' +
